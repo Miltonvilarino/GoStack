@@ -9,15 +9,15 @@ interface RequestDTO {
 }
 
 class CreateUserService {
-  public async execute({ name, email, password}: RequestDTO): Promise<User> {
+  public async execute({ name, email, password }: RequestDTO): Promise<User> {
     const usersRepository = getRepository(User);
 
     const checkUserExists = await usersRepository.findOne({
       where: { email },
-    })
+    });
 
-    if(checkUserExists) {
-      throw new Error('Email adress already used.')
+    if (checkUserExists) {
+      throw new Error('Email adress already used.');
     }
 
     const hashedPassword = await hash(password, 8);
@@ -25,16 +25,13 @@ class CreateUserService {
     const user = usersRepository.create({
       name,
       email,
-      password: hashedPassword
-    })
+      password: hashedPassword,
+    });
 
     await usersRepository.save(user);
 
     return user;
   }
-
-
-
 }
 
 export default CreateUserService;
