@@ -2,8 +2,7 @@ import User from '../models/User';
 import { hash } from 'bcryptjs';
 import { getRepository } from 'typeorm';
 
-import AppError from '../errors/AppError'
-
+import AppError from '../errors/AppError';
 
 interface RequestDTO {
   name: string;
