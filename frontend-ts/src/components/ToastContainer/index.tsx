@@ -18,12 +18,18 @@ const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
     {
       from: {
         right: '-120%',
+        opacity: 0,
+        transform: 'rotateZ(0deg)',
       },
       enter: {
         right: '0%',
+        opacity: 1,
+        transform: 'rotateZ(360deg)',
       },
       leave: {
         right: '-120%',
+        opacity: 0,
+        transform: 'rotateZ(0eg)',
       },
     }
   );
@@ -31,7 +37,7 @@ const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
   return (
     <Container>
       {messagesWithTransitions.map(({ item, key, props }) => (
-        <Toast key={message.id} message={message} />
+        <Toast key={key} message={item} style={props} />
       ))}
     </Container>
   );
